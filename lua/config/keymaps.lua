@@ -32,6 +32,10 @@ vim.keymap.set("n", "<leader>e", function()
     end
 end, opts)
 
+-- Keep selection when indenting in visual mode
+vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", opts)
+
 -- Set leader + a to select all
 vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true, silent = true })
 
@@ -62,6 +66,13 @@ vim.keymap.set("n", "<leader>v", function()
         vim.cmd("startinsert")
     end
 end, opts)
+
+-- Folding (built-in, no explicit keymaps needed)
+-- za  toggle fold under cursor
+-- zc  close fold
+-- zo  open fold
+-- zM  close all folds
+-- zR  open all folds
 
 -- Keymaps for bufferline
 vim.keymap.set("n", "H", ":BufferLineCyclePrev<CR>", opts)

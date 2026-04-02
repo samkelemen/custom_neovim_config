@@ -13,6 +13,11 @@ vim.cmd.colorscheme("habamax")
 -- Don't change the cwd when I move into a file
 vim.opt.autochdir = false
 
+-- Code folding via treesitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false  -- don't fold on open
+
 -- Show full diagnostic messages inline
 vim.diagnostic.config({
     virtual_text = {
