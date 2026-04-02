@@ -13,6 +13,26 @@ vim.cmd.colorscheme("habamax")
 -- Don't change the cwd when I move into a file
 vim.opt.autochdir = false
 
+-- Show full diagnostic messages inline
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = "",
+        format = function(d)
+            local icons = { ERROR = " ", WARN = " ", INFO = " ", HINT = " " }
+            return icons[vim.diagnostic.severity[d.severity]] .. d.message
+        end,
+    },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
+        },
+    },
+    underline = true,
+})
+
 -- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
