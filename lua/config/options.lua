@@ -15,7 +15,7 @@ vim.opt.autochdir = false
 
 -- Code folding via treesitter
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false  -- don't fold on open
 
 -- Show full diagnostic messages inline
