@@ -20,33 +20,15 @@ vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", opts)
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", opts)
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", opts)
 
--- Open floating neovtree window with <leader>e
+-- Open floating neotree window with <leader>e
 local opts = { noremap = true, silent = true }
 
-Neotree_is_open = false
-
 vim.keymap.set("n", "<leader>e", function()
-    if Neotree_is_open then
-        require("neo-tree.command").execute({ action = "close" })
+    local current_file = vim.fn.expand("%:p")
+    if current_file ~= "" and vim.fn.filereadable(current_file) == 1 then
+        vim.cmd("Neotree toggle reveal_file=" .. current_file .. " position=float")
     else
-        local cwd = vim.fn.getcwd()
-        local current_file = vim.fn.expand("%:p")
-        if current_file ~= "" and vim.fn.filereadable(current_file) == 1 then
-            require("neo-tree.command").execute({
-                action = "focus",
-                source = "filesystem",
-                position = "float",
-                reveal_file = current_file,
-                dir = cwd,
-            })
-        else
-            require("neo-tree.command").execute({
-                action = "focus",
-                source = "filesystem",
-                position = "float",
-                dir = cwd,
-            })
-        end
+        vim.cmd("Neotree toggle position=float dir=" .. vim.fn.getcwd())
     end
 end, opts)
 

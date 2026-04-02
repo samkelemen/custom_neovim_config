@@ -21,20 +21,6 @@ return {
                         current = "window",
                     },
                 },
-                event_handlers = {
-                    {
-                        event = "neo_tree_window_after_open",
-                        handler = function()
-                            Neotree_is_open = true
-                        end,
-                    },
-                    {
-                        event = "neo_tree_window_after_close",
-                        handler = function()
-                            Neotree_is_open = false
-                        end,
-                    },
-                },
             })
 
             vim.api.nvim_create_autocmd("VimEnter", {
@@ -44,7 +30,6 @@ return {
                         if current_file == "" then
                             local path = vim.fn.getcwd()
                             vim.cmd("Neotree float dir=" .. path)
-                            Neotree_is_open = true
                         end
                     end)
                 end,
