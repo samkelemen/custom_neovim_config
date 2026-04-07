@@ -44,3 +44,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
     end,
 })
+
+-- Let buffer automatically reload when it has been changed
+-- by a different process (useful when using Claude Code)
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+    command = "checktime",
+})
