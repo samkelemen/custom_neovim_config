@@ -6,8 +6,7 @@ return {
     },
     config = function()
         vim.lsp.config("pyright", {})
-        vim.lsp.config("clangd", {})
-        vim.lsp.enable({ "pyright", "clangd" })
+        vim.lsp.enable({ "pyright" })
 
         vim.api.nvim_create_autocmd("LspAttach", {
             callback = function(event)
